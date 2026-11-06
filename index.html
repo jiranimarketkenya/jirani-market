@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#143d33">
+<title>Jirani Market — Local Marketplace</title>
+<style>
+:root{--green:#143d33;--green2:#205746;--pale:#e8f4ed;--bg:#f5f7f5;--ink:#19231f;--muted:#68756e;--line:#dce5df;--white:#fff;--orange:#f2b544}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}
+header{background:var(--green);color:#fff;padding:17px 16px 22px}.wrap{max-width:1080px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;background:var(--orange);display:grid;place-items:center;color:var(--green);font-weight:900;font-size:21px}.brand h1{font-size:21px;margin:0}.brand small{display:block;color:#cfe2d9;font-size:12px;margin-top:2px}.pill{border:1px solid #5c7e70;border-radius:99px;padding:6px 10px;font-size:11px;color:#e2eee8}
+.hero{padding:23px 0 4px}.hero h2{font-size:clamp(24px,4vw,34px);line-height:1.12;margin:0 0 8px}.hero p{margin:0 0 17px;color:#d5e7de;font-size:14px}.searchrow{display:flex;gap:8px}.searchrow input{flex:1;min-width:0}
+input,select,textarea{width:100%;border:1px solid #cbd8d0;border-radius:11px;padding:11px 12px;background:white;color:var(--ink)}button{border:0;border-radius:11px;background:var(--green);color:white;font-weight:700;padding:11px 14px;cursor:pointer}button:focus,input:focus,select:focus,textarea:focus{outline:3px solid #b8ddc8;outline-offset:1px}.searchrow button{background:var(--orange);color:var(--green)}
+main{max-width:1080px;margin:auto;padding:17px 15px 30px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:13px}.toolbar h2{font-size:19px;margin:0}.filters{display:flex;gap:8px;flex-wrap:wrap}.filters select{width:auto;max-width:180px;padding:9px 10px;font-size:13px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.product{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;min-width:0}.photo{height:128px;background:linear-gradient(135deg,#e8f4ed,#f8edcf);display:grid;place-items:center;font-size:48px}.pbody{padding:12px;display:flex;flex-direction:column;gap:7px;flex:1}.category{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800}.product h3{font-size:15px;margin:0;overflow-wrap:anywhere}.price{font-size:18px;font-weight:800;color:var(--green)}.location{font-size:12px;color:var(--muted);overflow-wrap:anywhere}.desc{font-size:12px;color:#46554d;line-height:1.4;overflow-wrap:anywhere}.contact{width:100%;margin-top:auto;background:#19754a;padding:10px;font-size:13px}.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;margin-bottom:13px}.panel h2{font-size:17px;margin:0 0 5px}.panel p{font-size:12px;color:var(--muted);line-height:1.5;margin:5px 0 12px}.panel label{display:block;font-size:12px;font-weight:750;margin:10px 0 5px}.panel button{width:100%;margin-top:12px}.notice{border-radius:11px;background:var(--pale);padding:10px;font-size:12px;color:var(--green);line-height:1.45}.stats{display:flex;gap:7px;margin-bottom:13px}.stat{flex:1;background:white;border:1px solid var(--line);border-radius:12px;padding:11px}.stat strong{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}.empty{background:white;border:1px dashed #bdccc2;border-radius:14px;padding:30px 15px;text-align:center;color:var(--muted);font-size:13px;grid-column:1/-1}.empty b{display:block;color:var(--ink);margin-bottom:5px}.secondary{background:#edf3ef;color:var(--green);border:1px solid var(--line)}.tiny{font-size:11px;color:var(--muted);line-height:1.5}footer{text-align:center;color:var(--muted);font-size:11px;padding:0 15px 25px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:570px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.photo{height:105px;font-size:39px}.pbody{padding:10px;gap:6px}.product h3{font-size:14px}.price{font-size:16px}.brand h1{font-size:19px}.pill{display:none}.hero{padding-top:20px}.filters{width:100%}.filters select{flex:1;max-width:none}.toolbar{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top"><div class="brand"><div class="logo">J</div><div><h1>Jirani Market</h1><small>Find it nearby. Buy from your community.</small></div></div><span class="pill">LOCAL MARKETPLACE · DEMO</span></div>
+ <div class="hero"><h2>Your neighbourhood,<br>all in one market.</h2><p>Discover products listed by local sellers and contact them directly on WhatsApp.</p>
+ <div class="searchrow"><input id="search" aria-label="Search products" placeholder="Search phones, shoes, food..." /><button id="searchBtn">Search</button></div></div>
+</div></header>
+<main>
+ <div class="stats"><div class="stat"><strong id="listingCount">0</strong><span>Listings</span></div><div class="stat"><strong id="categoryCount">0</strong><span>Categories</span></div><div class="stat"><strong id="areaLabel">Local</strong><span>Launch area</span></div></div>
+ <div class="toolbar"><h2>Explore listings</h2><div class="filters"><select id="categoryFilter" aria-label="Filter category"><option value="all">All categories</option><option>Electronics</option><option>Fashion</option><option>Home</option><option>Food</option><option>Beauty</option><option>Services</option><option>Other</option></select><select id="sortFilter" aria-label="Sort listings"><option value="new">Newest first</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div></div>
+ <div class="layout">
+  <section><div id="products" class="products"></div><p class="tiny">Demo listings are examples, not verified offers. Confirm product condition, seller identity, price and pickup arrangements before paying.</p></section>
+  <aside>
+   <div class="panel"><h2>List a product</h2><p>Have something to sell? Add a listing to this demo marketplace.</p>
+    <form id="listingForm">
+     <label for="name">Product or service name *</label><input id="name" maxlength="70" placeholder="e.g. Samsung phone" required>
+     <label for="price">Price in KES *</label><input id="price" type="number" min="0" step="1" placeholder="e.g. 4500" required>
+     <label for="category">Category *</label><select id="category" required><option value="Electronics">Electronics</option><option value="Fashion">Fashion</option><option value="Home">Home</option><option value="Food">Food</option><option value="Beauty">Beauty</option><option value="Services">Services</option><option value="Other">Other</option></select>
+     <label for="place">Town / neighbourhood *</label><input id="place" maxlength="70" placeholder="e.g. Iten town" required>
+     <label for="seller">Seller name *</label><input id="seller" maxlength="50" placeholder="Name or shop name" required>
+     <label for="phone">WhatsApp number *</label><input id="phone" inputmode="tel" maxlength="20" placeholder="e.g. 0712345678" required>
+     <label for="description">Short description</label><textarea id="description" maxlength="180" rows="2" placeholder="Condition, size, pickup details..."></textarea>
+     <button type="submit">Publish listing</button>
+    </form>
+    <div class="notice" style="margin-top:12px">Your number is shown to buyers through a WhatsApp contact link. Only publish a number you are comfortable sharing.</div>
+   </div>
+   <div class="panel"><h2>Manage this demo</h2><p>Listings you add are saved in this browser on this device.</p><button id="exportBtn" class="secondary" type="button">Export listings (CSV)</button><button id="resetBtn" class="secondary" type="button">Reset demo listings</button><p class="tiny">No account, cloud sync, payment handling or moderation system is connected yet.</p></div>
+  </aside>
+ </div>
+</main>
+<footer>Jirani Market · First prototype · Built for testing</footer>
+<script>
+const KEY='jirani-market-listings-v1';
+const demo=[
+{id:'d1',name:'Android smartphone',price:8500,category:'Electronics',place:'Local town',seller:'Demo seller',phone:'0712345678',description:'Example listing only. Replace with a real seller listing.',created:Date.now()-6000,emoji:'📱',demo:true},
+{id:'d2',name:'Casual sneakers',price:1800,category:'Fashion',place:'Local town',seller:'Demo seller',phone:'0712345678',description:'Example listing only. Check size and condition before buying.',created:Date.now()-5000,emoji:'👟',demo:true},
+{id:'d3',name:'Study desk',price:3200,category:'Home',place:'Local town',seller:'Demo seller',phone:'0712345678',description:'Example listing only. Arrange to inspect before paying.',created:Date.now()-4000,emoji:'🪑',demo:true},
+{id:'d4',name:'Fresh vegetables bundle',price:250,category:'Food',place:'Local town',seller:'Demo seller',phone:'0712345678',description:'Example listing only. Confirm availability with seller.',created:Date.now()-3000,emoji:'🥬',demo:true},
+{id:'d5',name:'Haircut appointment',price:300,category:'Services',place:'Local town',seller:'Demo seller',phone:'0712345678',description:'Example service listing. Confirm location and time.',created:Date.now()-2000,emoji:'💈',demo:true},
+{id:'d6',name:'Beauty care set',price:950,category:'Beauty',place:'Local town',seller:'Demo seller',phone:'0712345678',description:'Example listing only. Check products and expiry dates.',created:Date.now()-1000,emoji:'🧴',demo:true}
+];
+function load(){try{const s=localStorage.getItem(KEY);return s===null?demo:JSON.parse(s)}catch(e){return demo}}
+function save(data){localStorage.setItem(KEY,JSON.stringify(data))}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function phoneForWa(raw){let n=raw.replace(/\D/g,'');if(n.startsWith('0'))n='254'+n.slice(1);else if(n.startsWith('254')){}else if(n.startsWith('7')||n.startsWith('1'))n='254'+n;return n}
+function emojiFor(c){return ({Electronics:'📱',Fashion:'👕',Home:'🪑',Food:'🥑',Beauty:'🧴',Services:'🛠️',Other:'🛍️'})[c]||'🛍️'}
+function render(){
+ let data=load();const q=document.querySelector('#search').value.trim().toLowerCase(),cat=document.querySelector('#categoryFilter').value,sort=document.querySelector('#sortFilter').value;
+ data=data.filter(x=>(cat==='all'||x.category===cat)&&[x.name,x.category,x.place,x.seller,x.description].join(' ').toLowerCase().includes(q));
+ if(sort==='low')data.sort((a,b)=>a.price-b.price);else if(sort==='high')data.sort((a,b)=>b.price-a.price);else data.sort((a,b)=>b.created-a.created);
+ document.querySelector('#listingCount').textContent=load().length;document.querySelector('#categoryCount').textContent=new Set(load().map(x=>x.category)).size;
+ const root=document.querySelector('#products');root.innerHTML='';
+ if(!data.length){root.innerHTML='<div class="empty"><b>No listings found</b>Try another search or category, or add a product using the form.</div>';return}
+ data.forEach(x=>{const el=document.createElement('article');el.className='product';const phone=phoneForWa(x.phone);const msg=encodeURIComponent('Hi '+x.seller+', I saw your listing for '+x.name+' on Jirani Market. Is it still available for KES '+x.price+'?');const wa='https://wa.me/'+phone+'?text='+msg;
+ el.innerHTML=`<div class="photo" aria-hidden="true">${esc(x.emoji||emojiFor(x.category))}</div><div class="pbody"><div class="category">${esc(x.category)}${x.demo?' · Sample':''}</div><h3>${esc(x.name)}</h3><div class="price">KES ${Number(x.price).toLocaleString('en-KE')}</div><div class="location">📍 ${esc(x.place)}</div><div class="desc">${esc(x.description||'Contact seller for details.')}</div><div class="location">Seller: ${esc(x.seller)}</div><a href="${wa}" target="_blank" rel="noopener noreferrer" style="text-decoration:none"><button class="contact" type="button">Contact on WhatsApp</button></a>${x.demo?'':'<button type="button" class="secondary delete" data-id="'+esc(x.id)+'">Delete my demo listing</button>'}</div>`;
+ root.appendChild(el);
+ });
+}
+document.querySelector('#listingForm').addEventListener('submit',e=>{
+ e.preventDefault();const phone=document.querySelector('#phone').value.trim();const digits=phone.replace(/\D/g,'');
+ if(digits.length<9||digits.length>15){alert('Please enter a valid WhatsApp phone number, including country code if needed.');return}
+ const x={id:'l'+Date.now().toString(36),name:document.querySelector('#name').value.trim(),price:Number(document.querySelector('#price').value),category:document.querySelector('#category').value,place:document.querySelector('#place').value.trim(),seller:document.querySelector('#seller').value.trim(),phone,description:document.querySelector('#description').value.trim(),created:Date.now(),emoji:emojiFor(document.querySelector('#category').value),demo:false};
+ if(!x.name||!x.place||!x.seller||!Number.isFinite(x.price)||x.price<0){alert('Please check the required fields.');return}
+ const data=load();data.push(x);save(data);e.target.reset();render();window.scrollTo({top:0,behavior:'smooth'});
+});
+['search','categoryFilter','sortFilter'].forEach(id=>document.querySelector('#'+id).addEventListener(id==='search'?'input':'change',render));
+document.querySelector('#searchBtn').addEventListener('click',render);
+document.querySelector('#products').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(!b)return;const id=b.dataset.id;if(confirm('Delete this listing from this browser?')){save(load().filter(x=>x.id!==id));render()}});
+document.querySelector('#exportBtn').addEventListener('click',()=>{const rows=[['Name','Price KES','Category','Town','Seller','WhatsApp','Description'],...load().map(x=>[x.name,x.price,x.category,x.place,x.seller,x.phone,x.description])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='jirani-market-listings.csv';a.click();URL.revokeObjectURL(url)});
+document.querySelector('#resetBtn').addEventListener('click',()=>{if(confirm('Remove listings stored in this browser and restore sample listings? Export first if needed.')){save(demo);render()}});
+render();
+</script>
+</body>
+</html>
